@@ -1,0 +1,21 @@
+#
+# {{ ansible_managed }}
+# !!! DO NOT EDIT BY HAND !!!
+# To modify: change configuration in Ansible role {{ role_path | basename }}
+#
+
+update_period_sec     {{ inadyn_update_periode_sec }}
+forced_update_period  {{ inadyn_forced_update_period }}
+
+syslog
+debug                 {{ inadyn_debug_level }}
+
+dyndns_system         {{ inadyn_dyndns_system }}
+
+ip_server_name        {{ inadyn_ip_server_name }}:{{ inadyn_ip_server_port }} {{ inadyn_ip_server_url }}
+
+{% for alias in inadyn_alias %}
+alias                 {{ alias.name }},{{ alias.hash }} {{ alias.ip }}
+{% endfor %}
+
+background

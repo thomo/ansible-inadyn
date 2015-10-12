@@ -1,0 +1,19 @@
+---
+
+# 0..7; higher number, more log debug messages
+inadyn_debug_level: 1
+
+inadyn_update_periode_sec: 60
+
+inadyn_forced_update_period: 3600
+
+inadyn_dyndns_system: 'default@freedns.afraid.org'
+
+# The client IP is detected by calling 'inadyn_ip_server_url' from 'inadyn_ip_server_name:inadyn_ip_server_port'.
+inadyn_ip_server_name: 'whatismyv6.com'
+inadyn_ip_server_port: 80
+inadyn_ip_server_url:  '/'
+
+inadyn_alias:
+#  structure of items
+#  - { name: a_name, hash: a_hash, ip: ip4|ip6 }
