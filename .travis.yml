@@ -5,7 +5,7 @@ language: python
 python: "2.7"
 
 before_install:
-  # logwatch should be installed by the role itself
+  # inadyn should be installed by the role itself
   - sudo apt-get remove inadyn
 
   # Make sure everything's up to date.
