@@ -5,6 +5,11 @@
   when: ansible_os_family == 'RedHat'
   tags: [ 'package', 'inadyn' ]
 
+- name: Install the inadyn packages in Debian derivatives
+  apt: name=inadyn state=present
+  when: ansible_os_family == 'Debian'
+  tags: [ 'package', 'inadyn' ]
+
 - name: Configure inadyn-mt
   template: src=inadyn-mt.conf.j2 dest=/etc/inadyn-mt.conf
   notify:
