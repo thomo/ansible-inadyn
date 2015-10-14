@@ -16,4 +16,5 @@ inadyn_ip_server_url:  '/'
 
 inadyn_alias:
 #  structure of items
-#  - { name: a_name, hash: a_hash, ip: ip4|ip6 }
+#   - { name: a_name, hash: a_hash, ip: ip4|ip6 }
+   - { name: host.net, hash: hashvalue, ip: ip4 }
