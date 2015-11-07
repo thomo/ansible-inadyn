@@ -17,8 +17,8 @@
   tags: [ 'configuration', 'package', 'inadyn' ]
 
 - name: Enable inadyn service in Debian derivatives
-  lineinfile: dest=/etc/defaults/inadyn state=present regexp=^RUN_DAEMON line=RUN_DAEMON="yes"
-  lineinfile: dest=/etc/defaults/inadyn state=present regexp=^RUN_IPUP   line=RUN_IPUP="no"
+  lineinfile: dest=/etc/default/inadyn state=present regexp=^RUN_DAEMON line=RUN_DAEMON="yes"
+  lineinfile: dest=/etc/default/inadyn state=present regexp=^RUN_IPUP   line=RUN_IPUP="no"
   when: ansible_os_family == 'Debian'
   tags: [ 'configuration', 'service', 'inadyn' ]
 
