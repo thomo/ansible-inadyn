@@ -1,3 +1,4 @@
 ---
 - name: restart inadyn
   service: name=inadyn state=restarted
+  when: not( ansible_distribution=='Ubuntu' and ansible_distribution_major_version=='12' )
