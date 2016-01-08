@@ -5,9 +5,6 @@ language: python
 python: "2.7"
 
 before_install:
-  # inadyn should be installed by the role itself
-  - sudo apt-get remove inadyn
-
   # Make sure everything's up to date.
   - sudo apt-get update -qq
   - pip install --upgrade pip
@@ -35,3 +32,10 @@ script:
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && return 0)
     || (echo 'Idempotence test: fail' && return 1)
+  
+  - >
+    grep -q '^RUN_IPUP="no"$' /etc/default/inadyn
+    && (echo 'Pass' && return 0)
+    || (echo 'Failed: missing line RUN_IPUP in inadyn' && return 1)
+
+
