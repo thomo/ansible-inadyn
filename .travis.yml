@@ -33,14 +33,3 @@ script:
     && (echo 'Idempotence test: pass' && return 0)
     || (echo 'Idempotence test: fail' && return 1)
   
-  - >
-    grep -q '^RUN_IPUP="no"$' /etc/default/inadyn
-    && (echo 'Pass' && return 0)
-    || (echo 'Failed: missing line RUN_IPUP in inadyn' && return 1)
-
-  - >
-    grep -q '^RUN_DAEMON="yes"$' /etc/default/inadyn
-    && (echo 'Pass' && return 0)
-    || (echo 'Failed: missing line RUN_DAEMON in inadyn' && return 1)
-
-
