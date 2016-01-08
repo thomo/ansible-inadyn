@@ -23,8 +23,10 @@
   tags: [ 'configuration', 'package', 'inadyn' ]
 
 - name: Enable inadyn service in Debian distribution
-  lineinfile: dest=/etc/default/inadyn state=present regexp=^RUN_DAEMON line=RUN_DAEMON="yes"
-  lineinfile: dest=/etc/default/inadyn state=present regexp=^RUN_IPUP   line=RUN_IPUP="no"
+  lineinfile: dest=/etc/default/inadyn state=present regexp={{ item.regexp }} line={{ item.line }}
+  with_items:
+    - { regexp: "^RUN_DAEMON" , line: 'RUN_DAEMON="yes"' }
+    - { regexp: "^RUN_IPUP" , line: 'RUN_IPUP="no"' }
   when: ansible_distribution == 'Debian'
   tags: [ 'configuration', 'service', 'inadyn' ]
 
