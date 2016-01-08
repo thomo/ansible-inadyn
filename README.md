@@ -3,6 +3,8 @@ Ansible Role: thomo.inadyn [![Build Status](https://travis-ci.org/thomo/ansible-
 
 Ansible role to install and configure inadyn-mt.
 
+I use it by myself on CentOS 7.
+
 Installation
 ------------
 ### Ansible Galaxy
