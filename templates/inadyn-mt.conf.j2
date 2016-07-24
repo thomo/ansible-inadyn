@@ -12,7 +12,7 @@ debug                 {{ inadyn_debug_level }}
 
 dyndns_system         {{ inadyn_dyndns_system }}
 
-ip_server_name        {{ inadyn_ip_server_name }}:{{ inadyn_ip_server_port }} {{ inadyn_ip_server_url }}
+ip_server_name        {{ inadyn_ip_server_name }}{{ ':[%s]' % inadyn_ip_server_port if inadyn_ip_server_port else '' }} {{ inadyn_ip_server_url }}
 
 {% for alias in inadyn_alias %}
 alias                 {{ alias.name }},{{ alias.hash }} {{ alias.ip }}
