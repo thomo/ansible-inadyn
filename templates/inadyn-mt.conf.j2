@@ -18,6 +18,8 @@ ip_server_name        {{ inadyn_ip_server_name }}{{ ':[%s]' % inadyn_ip_server_p
 alias                 {{ alias.name }},{{ alias.hash }} {{ alias.ip }}
 {% endfor %}
 
+{% if inadyn_background is sameas true %}
 background
 
+{% endif %}
 cache_dir	      /var/cache/inadyn-mt

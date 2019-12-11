@@ -2,6 +2,7 @@
 
 # 0..7; higher number, more log debug messages
 inadyn_debug_level: 1
+inadyn_background: 'no'
 
 inadyn_update_periode_sec: 60
 
