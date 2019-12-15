@@ -4,7 +4,7 @@ galaxy_info:
   description: Install and configure inadyn
   company:
   license: MIT
-  min_ansible_version: 1.9.2
+  min_ansible_version: 2.9.2
   platforms:
   - name: EL
     versions:
@@ -13,6 +13,7 @@ galaxy_info:
   #  - 6
   # CentOS 7
     - 7
+    - 8
   #- name: GenericUNIX
   #  versions:
   #  - all
