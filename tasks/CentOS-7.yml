@@ -1,0 +1,14 @@
+---
+
+- name: Install the inadyn package in CentOS 7
+  yum: name=http://public.handverdrahtet.org/files/inadyn-mt-2.28.06-2.el7.centos.x86_64.rpm state=present
+  tags: [ 'package', 'inadyn' ]
+
+- name: Include config
+  include_vars: "config.yml"
+  tags: [ 'configuration', 'inadyn' ]
+
+- name: Start inadyn service
+  service: name=inadyn state=started enabled=yes
+  tags: [ 'service', 'inadyn' ]
+

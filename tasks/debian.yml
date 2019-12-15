@@ -1,0 +1,22 @@
+---
+
+- name: Install the inadyn packages in Debian derivatives
+  apt: name=inadyn state=present
+  tags: [ 'package', 'inadyn' ]
+
+- name: Include config
+  include_vars: "config.yml"
+  tags: [ 'configuration', 'inadyn' ]
+
+- name: Enable inadyn service in Debian distribution
+  lineinfile: dest=/etc/default/inadyn state=present regexp={{ item.regexp }} line={{ item.line }}
+  with_items:
+    - { regexp: "^RUN_DAEMON" , line: 'RUN_DAEMON="yes"' }
+    - { regexp: "^RUN_IPUP" , line: 'RUN_IPUP="no"' }
+  when: ansible_distribution == 'Debian'
+  tags: [ 'configuration', 'service', 'inadyn' ]
+
+- name: Start inadyn service (Ubuntu 12)
+  cron: name="inadyn service" job="/usr/sbin/inadyn" special_time="reboot"
+  when: ( ansible_distribution=='Ubuntu' and ansible_distribution_major_version=='12' )
+  tags: [ 'service', 'inadyn' ]

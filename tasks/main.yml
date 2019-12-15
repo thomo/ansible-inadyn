@@ -3,49 +3,7 @@
   include_vars: '{{ item }}'
   with_first_found:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
     - "default.yml"
   tags: [ 'configuration', 'package', 'service', 'inadyn' ]
-
-- name: Install the inadyn packages in Redhat derivatives
-  yum: name=inadyn-mt state=present
-  when: ansible_os_family == 'RedHat' and ansible_distribution != 'CentOS' 
-  tags: [ 'package', 'inadyn' ]
-
-- name: Install the inadyn package in CentOS 7
-  yum: name=http://public.handverdrahtet.org/files/inadyn-mt-2.28.06-2.el7.centos.x86_64.rpm state=present
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7'  
-  tags: [ 'package', 'inadyn' ]
-
-- name: Install the inadyn package in CentOS 8
-  yum: name=http://public.handverdrahtet.org/files/inadyn-mt-2.28.10-4.el8.x86_64.rpm state=present
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version == '8'  
-  tags: [ 'package', 'inadyn' ]
-
-- name: Install the inadyn packages in Debian derivatives
-  apt: name=inadyn state=present
-  when: ansible_os_family == 'Debian'
-  tags: [ 'package', 'inadyn' ]
-
-- name: Configure inadyn
-  template: src=inadyn-mt.conf.j2 dest={{ inadyn_config_file }}
-  notify:
-  - restart inadyn
-  tags: [ 'configuration', 'package', 'inadyn' ]
-
-- name: Enable inadyn service in Debian distribution
-  lineinfile: dest=/etc/default/inadyn state=present regexp={{ item.regexp }} line={{ item.line }}
-  with_items:
-    - { regexp: "^RUN_DAEMON" , line: 'RUN_DAEMON="yes"' }
-    - { regexp: "^RUN_IPUP" , line: 'RUN_IPUP="no"' }
-  when: ansible_distribution == 'Debian'
-  tags: [ 'configuration', 'service', 'inadyn' ]
-
-- name: Start inadyn service
-  service: name=inadyn state=started enabled=yes
-  when: not( ansible_distribution=='Ubuntu' and ansible_distribution_major_version=='12' )
-  tags: [ 'service', 'inadyn' ]
-
-- name: Start inadyn service (Ubuntu 12)
-  cron: name="inadyn service" job="/usr/sbin/inadyn" special_time="reboot"
-  when: ( ansible_distribution=='Ubuntu' and ansible_distribution_major_version=='12' )
-  tags: [ 'service', 'inadyn' ]

@@ -1,0 +1,8 @@
+---
+
+- name: Configure inadyn
+  template: src=inadyn-mt.conf.j2 dest={{ inadyn_config_file }}
+  notify:
+  - restart inadyn
+  tags: [ 'configuration', 'package', 'inadyn' ]
+

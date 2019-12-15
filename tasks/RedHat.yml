@@ -1,0 +1,15 @@
+---
+
+- name: Install the inadyn packages in Redhat derivatives
+  yum: name=inadyn-mt state=present
+  tags: [ 'package', 'inadyn' ]
+
+- name: Include config
+  include_vars: "config.yml"
+  tags: [ 'configuration', 'inadyn' ]
+
+- name: Start inadyn service
+  service: name=inadyn state=started enabled=yes
+  tags: [ 'service', 'inadyn' ]
+
+
