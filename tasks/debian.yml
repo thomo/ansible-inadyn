@@ -5,7 +5,7 @@
   tags: [ 'package', 'inadyn' ]
 
 - name: Include config
-  include_vars: "config.yml"
+  import_tasks: "config.yml"
   tags: [ 'configuration', 'inadyn' ]
 
 - name: Enable inadyn service in Debian distribution
